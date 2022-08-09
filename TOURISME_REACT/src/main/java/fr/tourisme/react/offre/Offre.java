@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import fr.tourisme.react.hotel.Hotel;
 import fr.tourisme.react.service.Activite;
-import fr.tourisme.react.service.Hotel;
 import fr.tourisme.react.service.Restaurant;
 import fr.tourisme.react.service.Service;
 
