@@ -20,6 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import fr.tourisme.react.notation.Notation;
 import fr.tourisme.react.offre.Offre;
 
@@ -76,7 +78,8 @@ public class Service {
     }
 
     // le mapping est fait par l'attribut prestataire de Offre
-    @OneToMany( mappedBy = "prestataire" )
+    @OneToMany( mappedBy = "prestataire" ,fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JsonManagedReference //annotation pour eviter les infinite recursion
     private Set<Offre> offresProposees = new HashSet<Offre>();
 
     public Set<Offre> getOffresProposees() {
@@ -89,7 +92,7 @@ public class Service {
         offresProposees.add( o );
     }
 
-    @OneToOne( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+    @OneToOne( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
     @JoinColumn( name = "id_offre" )
     Offre meilleureOffre;
 
@@ -101,7 +104,8 @@ public class Service {
         this.meilleureOffre = meilleureOffre;
     }
 
-    @OneToMany( mappedBy = "service" )
+    @OneToMany( mappedBy = "service",fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+    @JsonManagedReference //annotation pour eviter les infinite recursion
     private Set<Notation> notations = new HashSet<Notation>();
 
     public Set<Notation> getNotations() {

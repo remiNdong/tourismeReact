@@ -59,6 +59,17 @@ public class Internaute {
     public void setEmail( String e ) {
         email = e;
     }
+    
+    
+    private String password;
+    
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
     @OneToMany( mappedBy = "internaute" )
     private Set<Notation> notations = new HashSet<Notation>();
@@ -91,5 +102,7 @@ public class Internaute {
 
         return this.getId() == autre.getId();
     }
+
+
 
 }

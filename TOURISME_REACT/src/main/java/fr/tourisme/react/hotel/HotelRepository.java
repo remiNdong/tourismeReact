@@ -8,15 +8,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HotelRepository extends CrudRepository<Hotel, Integer> {
+public interface HotelRepository extends CrudRepository<Hotel, Long> {
+	
 
-	@Query(value = "select h.* from hotel h , service s where h.id=s.id and s.ville=:villeChoisie", nativeQuery = true)
-	public List<Hotel> findByVille(@Param("villeChoisie")String villeChoisie);
+
+	public List<Hotel> findByAdresseVille(String villeChoisie);
 	
-	@Query(value = "select h.* from hotel h , service s where h.id=s.id  and h.classement>=:classementChoisi", nativeQuery = true)
-	public List<Hotel> findByEtoiles(@Param("classementChoisi")Integer classementChoisi);
+	@Query("select distinct h from Hotel h where h.classement>=:classementChoisi")
+	public List<Hotel> findByClassement(Integer classementChoisi);
 	
-	@Query(value = "select h.* from hotel h , service s where h.id=s.id  and s.ville=:villeChoisie and h.classement>=:classementChoisi", nativeQuery = true)
-	public List<Hotel> findByVilleEtoiles(@Param("villeChoisie")String villeChoisie,@Param("classementChoisi")String classementChoisi);
+	@Query("select distinct h from Hotel h where h.adresse.ville=:villeChoisie  and h.classement>=:classementChoisi")
+	public List<Hotel> findByVilleClassement(String villeChoisie,Integer classementChoisi);
 
 }

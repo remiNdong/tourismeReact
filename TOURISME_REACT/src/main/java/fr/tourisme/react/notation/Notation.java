@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import fr.tourisme.react.internaute.Internaute;
 import fr.tourisme.react.service.Service;
 
@@ -120,8 +122,9 @@ public class Notation implements Comparable<Notation> {
         this.commentaire = commentaire;
     }
 
-    @ManyToOne( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+    @ManyToOne( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
     @JoinColumn( name = "id_Internaute" )
+    @JsonBackReference // annotation pour eviter les infinite recursion
     private Internaute internaute;
 
     public Internaute getInternaute() {
@@ -132,8 +135,9 @@ public class Notation implements Comparable<Notation> {
         this.internaute = internaute;
     }
 
-    @ManyToOne( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+    @ManyToOne( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
     @JoinColumn( name = "id_Service" )
+    @JsonBackReference // annotation pour eviter les infinite recursion
     private Service service;
 
     public Service getService() {
