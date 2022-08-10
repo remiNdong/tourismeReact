@@ -3,12 +3,15 @@ package fr.tourisme.react.internaute;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 import fr.tourisme.react.notation.Notation;
 
@@ -71,7 +74,7 @@ public class Internaute {
 		this.password = password;
 	}
 
-    @OneToMany( mappedBy = "internaute" )
+    @OneToMany( mappedBy = "internaute" ,fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
     private Set<Notation> notations = new HashSet<Notation>();
 
     public Set<Notation> getNotations() {

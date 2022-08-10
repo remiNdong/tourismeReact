@@ -37,6 +37,8 @@ public class SecurityConfiguration {
                 .antMatchers("/").permitAll()
                 .antMatchers("/static/**/").permitAll()
                 .antMatchers("/hotels/**").permitAll()
+                .antMatchers("/activites/**").permitAll()
+                .antMatchers("/restaurants/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()

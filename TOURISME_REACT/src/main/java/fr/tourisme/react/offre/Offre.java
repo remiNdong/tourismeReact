@@ -12,9 +12,9 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import fr.tourisme.react.activite.Activite;
 import fr.tourisme.react.hotel.Hotel;
-import fr.tourisme.react.service.Activite;
-import fr.tourisme.react.service.Restaurant;
+import fr.tourisme.react.restaurant.Restaurant;
 import fr.tourisme.react.service.Service;
 
 @Entity

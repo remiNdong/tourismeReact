@@ -1,8 +1,10 @@
-package fr.tourisme.react.service;
+package fr.tourisme.react.activite;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import fr.tourisme.react.service.Service;
 
 @Entity
 @PrimaryKeyJoinColumn( name = "id" )

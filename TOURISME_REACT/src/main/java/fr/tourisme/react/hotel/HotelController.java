@@ -29,7 +29,7 @@ public class HotelController {
 		  
 		 Iterable<Hotel> hotels;
 		 if(villeChoisie!=null && classementChoisi!=null)
-			 hotels=hotelRepository.findByVilleClassement(villeChoisie, Integer.valueOf(classementChoisi));
+			 hotels=hotelRepository.findByAdresseVilleAndClassement(villeChoisie, Integer.valueOf(classementChoisi));
 		 else if(villeChoisie!=null)
 			 hotels=hotelRepository.findByAdresseVille(villeChoisie);
 		 else if(classementChoisi!=null)
@@ -43,7 +43,7 @@ public class HotelController {
 	  
 
 	    @GetMapping("/hotels/{hotelsId}")
-	    public ResponseEntity loadBook(@PathVariable("hotelsId") String hotelsId) {
+	    public ResponseEntity loadActivite(@PathVariable("hotelsId") String hotelsId) {
 	        Optional<Hotel> hotel = hotelRepository.findById(Long.valueOf(hotelsId));
 	        if(!hotel.isPresent()){
 	            return new ResponseEntity("Hotel not found", HttpStatus.BAD_REQUEST);

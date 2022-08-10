@@ -18,6 +18,6 @@ public interface HotelRepository extends CrudRepository<Hotel, Long> {
 	public List<Hotel> findByClassement(Integer classementChoisi);
 	
 	@Query("select distinct h from Hotel h where h.adresse.ville=:villeChoisie  and h.classement>=:classementChoisi")
-	public List<Hotel> findByVilleClassement(String villeChoisie,Integer classementChoisi);
+	public List<Hotel> findByAdresseVilleAndClassement(String villeChoisie,Integer classementChoisi);
 
 }
