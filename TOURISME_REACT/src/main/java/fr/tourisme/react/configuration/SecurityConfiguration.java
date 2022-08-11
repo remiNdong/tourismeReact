@@ -40,6 +40,8 @@ public class SecurityConfiguration {
                 .antMatchers("/offres/**").permitAll()
                 .antMatchers("/internautes").permitAll()
                 .antMatchers("/activites/**").permitAll()
+                .antMatchers("/authenticate").permitAll()
+                .antMatchers("/isConnected").permitAll()
                 .antMatchers("/restaurants/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
