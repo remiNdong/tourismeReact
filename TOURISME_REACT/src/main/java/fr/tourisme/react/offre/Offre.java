@@ -101,7 +101,7 @@ public class Offre {
 	// chaque Offre est proposé par un seul prestataire
 	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE }) 
 	@JoinColumn(name = "id_Service")
-	@JsonBackReference // annotation pour eviter les infinite recursion
+	@JsonBackReference(value="offre-service")  // annotation pour eviter les infinite recursion
 	Service prestataire;
 
 	public Service getPrestataire() {

@@ -79,7 +79,7 @@ public class Service {
 
     // le mapping est fait par l'attribut prestataire de Offre
     @OneToMany( mappedBy = "prestataire" ,fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JsonManagedReference //annotation pour eviter les infinite recursion
+    @JsonManagedReference(value="offre-service")  //annotation pour eviter les infinite recursion
     private Set<Offre> offresProposees = new HashSet<Offre>();
 
     public Set<Offre> getOffresProposees() {
@@ -105,7 +105,7 @@ public class Service {
     }
 
     @OneToMany( mappedBy = "service",fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
-    @JsonManagedReference //annotation pour eviter les infinite recursion
+    @JsonManagedReference(value="notation-service")  //annotation pour eviter les infinite recursion
     private Set<Notation> notations = new HashSet<Notation>();
 
     public Set<Notation> getNotations() {

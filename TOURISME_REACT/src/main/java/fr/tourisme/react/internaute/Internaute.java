@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import fr.tourisme.react.notation.Notation;
 
 @Entity
@@ -75,6 +77,7 @@ public class Internaute {
 	}
 
     @OneToMany( mappedBy = "internaute" ,fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+    @JsonManagedReference(value="notation-internaute") // annotation pour eviter les infinite recursion
     private Set<Notation> notations = new HashSet<Notation>();
 
     public Set<Notation> getNotations() {

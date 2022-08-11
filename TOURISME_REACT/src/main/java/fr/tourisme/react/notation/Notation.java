@@ -124,7 +124,7 @@ public class Notation implements Comparable<Notation> {
 
     @ManyToOne( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
     @JoinColumn( name = "id_Internaute" )
-    @JsonBackReference // annotation pour eviter les infinite recursion
+    @JsonBackReference(value="notation-internaute") // annotation pour eviter les infinite recursion
     private Internaute internaute;
 
     public Internaute getInternaute() {
@@ -137,7 +137,7 @@ public class Notation implements Comparable<Notation> {
 
     @ManyToOne( fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
     @JoinColumn( name = "id_Service" )
-    @JsonBackReference // annotation pour eviter les infinite recursion
+    @JsonBackReference(value="notation-service") // annotation pour eviter les infinite recursion
     private Service service;
 
     public Service getService() {
